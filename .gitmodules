@@ -4,12 +4,12 @@
 [submodule "ext/etl"]
 	path = ext/etl
 	url = https://github.com/ETLCPP/etl.git
-[submodule "hal/stm32h7xx_hal"]
-	path = hal/stm32h7xx_hal
-	url = https://github.com/STMicroelectronics/stm32h7xx-hal-driver.git
-[submodule "ext/stm_device_cmsis"]
-	path = ext/stm_device_cmsis
-	url = https://github.com/STMicroelectronics/cmsis-device-h7.git
 [submodule "ext/cmsis"]
 	path = ext/cmsis
 	url = https://github.com/ARM-software/CMSIS_5.git
+[submodule "hal/stm32c0xx_hal"]
+	path = hal/stm32c0xx_hal
+	url = https://github.com/STMicroelectronics/stm32c0xx-hal-driver.git
+[submodule "ext/stm_device_cmsis"]
+	path = ext/stm_device_cmsis
+	url = https://github.com/STMicroelectronics/cmsis-device-c0.git
