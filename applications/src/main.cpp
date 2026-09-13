@@ -9,14 +9,14 @@
 
 void PrintTask(void *argument);
 
-#define TASK_STACK_SIZE 1024
-#define TASK_STATIC_SIZE 1024
+/* Stack sized for the STM32C031's 12 KB SRAM */
+#define TASK_STACK_SIZE 512
 
 int main(void)
 {
     StackType_t task_stack[TASK_STACK_SIZE] = {0};
-    StaticTask_t idk_bruh[TASK_STATIC_SIZE] = {{0}};
-    xTaskCreateStatic(PrintTask, "Print", TASK_STACK_SIZE, NULL, 1, task_stack, idk_bruh);
+    StaticTask_t idk_bruh = {0};
+    xTaskCreateStatic(PrintTask, "Print", TASK_STACK_SIZE, NULL, 1, task_stack, &idk_bruh);
 
     vTaskStartScheduler(); // starts scheduler
 

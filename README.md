@@ -1,6 +1,8 @@
-# Copperhead Flight Software
+# Copperhead BMS Software
 
-All software that will run on the Copperhead vehicle.
+All software that will run on the Copperhead battery management system (BMS).
+Based on the Copperhead flight software repo, retargeted from the STM32H730
+to the STM32C031K6T6 (Cortex-M0+, 32 KB flash, 12 KB SRAM).
 
 ## Requirements
 - arm-none-eabi toolchain (see [Installing the Toolchain](#installing-the-toolchain))
@@ -22,7 +24,7 @@ cmake --build build
 ```
 
 Supported Targets:
-1. `STM32H730`
+1. `STM32C031` (default)
 2. `Native`
 
 ## Installing the Toolchain

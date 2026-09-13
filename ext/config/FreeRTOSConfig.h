@@ -49,14 +49,14 @@ extern uint32_t SystemCoreClock;
 
 /*-------------------- Specific defines -------------------*/
 #ifndef CMSIS_device_header
-#define CMSIS_device_header "stm32h7xx.h"
+#define CMSIS_device_header "stm32c0xx.h"
 #endif /* CMSIS_device_header */
 
 /* No secure feature is used the configENABLE_TRUSTZONE should be set to 0
  *
  */
 #define configENABLE_TRUSTZONE 0
-#define configENABLE_FPU 1
+#define configENABLE_FPU 0 /* Cortex-M0+ has no FPU */
 #define configENABLE_MPU 0
 
 #ifdef __NVIC_PRIO_BITS
@@ -78,7 +78,7 @@ function. */
 #define configTICK_RATE_HZ ((TickType_t)1000)
 
 #define configMINIMAL_STACK_SIZE ((uint16_t)512)
-#define configTOTAL_HEAP_SIZE ((size_t)(12 * 1024))
+#define configTOTAL_HEAP_SIZE ((size_t)(4 * 1024)) /* STM32C031 has 12 KB SRAM total */
 #define configMAX_TASK_NAME_LEN (16)
 #define configUSE_TRACE_FACILITY 1
 #define configUSE_16_BIT_TICKS 0

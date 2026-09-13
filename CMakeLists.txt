@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.25)
 
 ## Default target
 if(NOT "${TARGET}")
-    set(TARGET "STM32H730" CACHE STRING "Build target")
+    set(TARGET "STM32C031" CACHE STRING "Build target")
 endif()
 
 if("${TARGET}" STREQUAL "Native")

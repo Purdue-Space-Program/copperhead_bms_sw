@@ -57,6 +57,13 @@ dkms.conf
 # build directory
 build/
 
+# CMake in-source build artifacts
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+compile_commands.json
+Makefile
+
 # clangd index
 .cache
 

@@ -6,7 +6,7 @@ set(CMAKE_C_COMPILER   ${TOOLCHAIN_PREFIX}gcc)
 set(CMAKE_CXX_COMPILER ${TOOLCHAIN_PREFIX}g++)
 set(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
 
-set(TARGET_FLAGS       "-mcpu=cortex-m7 -mfpu=fpv5-d16 -mfloat-abi=hard")
+set(TARGET_FLAGS       "-mcpu=cortex-m0plus")
 set(COMMON_WARN_FLAGS  "-Wall -fdata-sections -ffunction-sections")
 
 set(_C_INC_LIST
@@ -44,7 +44,7 @@ set(CMAKE_EXECUTABLE_SUFFIX_ASM ".elf")
 set(CMAKE_EXECUTABLE_SUFFIX_C   ".elf")
 set(CMAKE_EXECUTABLE_SUFFIX_CXX ".elf")
 
-set(LDSCRIPT "${CMAKE_SOURCE_DIR}/hal/startup/stm32h730/STM32H730XX_FLASH.ld")
+set(LDSCRIPT "${CMAKE_SOURCE_DIR}/hal/startup/stm32c031/STM32C031K6X6_FLASH.ld")
 set(CMAKE_EXE_LINKER_FLAGS_INIT
   "--sysroot=/usr/lib/arm-none-eabi ${TARGET_FLAGS} -Wl,-T,${LDSCRIPT} --specs=nano.specs --specs=nosys.specs -Wl,--gc-sections -Wl,--print-memory-usage"
 )
