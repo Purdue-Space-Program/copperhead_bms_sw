@@ -3,7 +3,7 @@ Language:        Cpp
 # BasedOnStyle:  Microsoft
 AccessModifierOffset: -2
 AlignAfterOpenBracket: Align
-AlignArrayOfStructures: None
+AlignArrayOfStructures: Left
 AlignConsecutiveMacros: None
 AlignConsecutiveAssignments: None
 AlignConsecutiveBitFields: None
@@ -18,7 +18,7 @@ AllowShortBlocksOnASingleLine: Never
 AllowShortCaseLabelsOnASingleLine: false
 AllowShortFunctionsOnASingleLine: None
 AllowShortLambdasOnASingleLine: All
-AllowShortIfStatementsOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: WithoutElse
 AllowShortLoopsOnASingleLine: false
 AlwaysBreakAfterDefinitionReturnType: None
 AlwaysBreakAfterReturnType: None
@@ -57,7 +57,7 @@ BreakConstructorInitializersBeforeComma: false
 BreakConstructorInitializers: BeforeColon
 BreakAfterJavaFieldAnnotations: false
 BreakStringLiterals: true
-ColumnLimit:     120
+ColumnLimit:     125
 CommentPragmas:  '^ IWYU pragma:'
 QualifierAlignment: Leave
 CompactNamespaces: false
@@ -130,7 +130,7 @@ PenaltyBreakTemplateDeclaration: 10
 PenaltyExcessCharacter: 1000000
 PenaltyReturnTypeOnItsOwnLine: 1000
 PenaltyIndentedWhitespace: 0
-PointerAlignment: Right
+PointerAlignment: Left
 PPIndentWidth:   -1
 ReferenceAlignment: Pointer
 ReflowComments:  true
@@ -181,7 +181,7 @@ StatementMacros:
   - QT_REQUIRE_VERSION
 TabWidth:        4
 UseCRLF:         false
-UseTab:          Never
+UseTab:          ForIndentation
 WhitespaceSensitiveMacros:
   - STRINGIZE
   - PP_STRINGIZE

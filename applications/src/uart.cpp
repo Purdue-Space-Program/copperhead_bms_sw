@@ -5,9 +5,8 @@ UART_HandleTypeDef huart1;
 DMA_HandleTypeDef dma_uart_rx;
 
 // start listening
-void readUartTask(void *argument)
+void uartRead()
 {
-
     HAL_UART_Receive_DMA(&huart1, commandBuff, 64);
 }
 

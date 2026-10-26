@@ -5,6 +5,8 @@ if(NOT "${TARGET}")
     set(TARGET "STM32C031" CACHE STRING "Build target")
 endif()
 
+message(STATUS "generating makefile")
+
 if("${TARGET}" STREQUAL "Native")
     set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -x assembler-with-cpp -MMD -MP")
     set(CMAKE_C_FLAGS 
