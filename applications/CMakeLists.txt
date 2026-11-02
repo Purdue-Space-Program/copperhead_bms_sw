@@ -10,21 +10,21 @@
 #project(flight_sw)
 
 function(add_app name)
-    message("Adding application: \"${name}\"")
+  message("Adding application: \"${name}\"")
 
-    add_executable(${name} 
+  add_executable(${name}
         ${CMAKE_CURRENT_SOURCE_DIR}/${name}/${ARGN}
     )
 
-    target_include_directories(${name} INTERFACE 
+  target_include_directories(${name} INTERFACE
         ${CMAKE_CURRENT_SOURCE_DIR}/${name}
     )
 
-    target_link_libraries(${name} etl freertos_kernel)
+  target_link_libraries(${name} etl freertos_kernel)
 
-    if(NOT "${TARGET}" STREQUAL "Native")
-        target_link_libraries(${name} stm_hal)
-    endif()
+  if(NOT "${TARGET}" STREQUAL "Native")
+    target_link_libraries(${name} stm_hal)
+  endif()
 
 endfunction()
 

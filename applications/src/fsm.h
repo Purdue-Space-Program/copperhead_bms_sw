@@ -1,8 +1,0 @@
-enum state
-{
-	FAULT,
-	SAFE,
-	ARMED,
-	CHARGING,
-	DISCHARGING
-};
