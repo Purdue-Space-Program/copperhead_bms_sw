@@ -1,3 +1,4 @@
+#include "task-fsm.hpp" //this is where states are defined
 #include "FreeRTOS.h"
 #include "constants.hpp"
 #include "queue.h"
@@ -21,6 +22,9 @@ void vTaskFSM(void* parameters)
 
 	static state currentState = SAFE; // init to safe
 	static state nextState;
+
+	QueueHandle_t telemQueue = xQueueCreate(TELEM_QUEUE_SIZE, sizeof(telemPacket));
+	QueueHandle_t commandQueue = xQueueCreate(COMMAND_QUEUE_SIZE, sizeof(commandPacket));
 
 	for (;;) // FOR... EVER!
 	{

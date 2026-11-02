@@ -1,10 +1,10 @@
-enum
+enum state
 {
 	FAULT,
 	SAFE,
 	ARM,
 	CHARGE,
 	DISCHARGE
-} state;
+};
 
 void vTaskFSM(void*);
