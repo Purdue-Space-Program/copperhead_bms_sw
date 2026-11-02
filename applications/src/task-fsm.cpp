@@ -7,24 +7,25 @@
 
 void vTaskFSM(void* parameters)
 {
-	// create and schedule helper tasks
-	StaticTask_t telemSenderTCB;
-	StackType_t telemSenderStack[TASK_STACK_SIZE];
-	xTaskCreateStatic((TaskFunction_t)vTaskTelemSender, "this guy sends telemetry", TASK_STACK_SIZE, (void*)1,
-	                  vTaskTelemSenderPriority, telemSenderStack, &telemSenderTCB);
-
-	/*
-	StaticTask_t commandListenerTCB;
-	StackType_t commandListenerStack[TASK_STACK_SIZE];
-	xTaskCreateStatic((TaskFunction_t)vTaskFSM, "FSM Manager", TASK_STACK_SIZE, (void*)1, vTaskTelemSenderPriority,
-	telemSenderStack, &telemSenderTCB);
-	*/
-
 	static state currentState = SAFE; // init to safe
 	static state nextState;
 
+	QueueHandle_t redlineVoltageQueue = xQueueCreate(REDLINE_VOLTAGE_QUEUE_SIZE, sizeof(double));
+	QueueHandle_t redlineCurrentQueue = xQueueCreate(REDLINE_CURRENT_QUEUE_SIZE, sizeof(double));
+
 	QueueHandle_t telemQueue = xQueueCreate(TELEM_QUEUE_SIZE, sizeof(telemPacket));
 	QueueHandle_t commandQueue = xQueueCreate(COMMAND_QUEUE_SIZE, sizeof(commandPacket));
+
+	// create and schedule helper tasks
+	StaticTask_t telemSenderTCB;
+	StackType_t telemSenderStack[TASK_STACK_SIZE];
+	xTaskCreateStatic((TaskFunction_t)vTaskTelemSender, "this guy sends telemetry", TASK_STACK_SIZE, telemQueue,
+	                  vTaskTelemSenderPriority, telemSenderStack, &telemSenderTCB);
+
+	StaticTask_t commandListenerTCB;
+	StackType_t commandListenerStack[TASK_STACK_SIZE];
+	xTaskCreateStatic((TaskFunction_t)vTaskFSM, "FSM Manager", TASK_STACK_SIZE, commandQueue, vTaskTelemSenderPriority,
+	                  telemSenderStack, &telemSenderTCB);
 
 	for (;;) // FOR... EVER!
 	{
