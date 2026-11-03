@@ -2,8 +2,11 @@
 #include "FreeRTOS.h"
 #include "constants.hpp"
 #include "queue.h"
+#include "stm32c0xx_hal_exti.h"
 #include "task-telem.hpp"
 #include "task.h"
+
+int redlineCheck(QueueHandle_t* voltageQueue, QueueHandle_t* currentQueue);
 
 void vTaskFSM(void* parameters)
 {
@@ -61,5 +64,27 @@ void vTaskFSM(void* parameters)
 		}
 
 		// === compute next state ===
+		if (redlineCheck(redlineVoltageQueue, redlineVoltageQueue))
+		{
+			nextState = FAULT;
+		}
 	}
+}
+
+int redlineCheck(QueueHandle_t* voltageQueue, QueueHandle_t* currentQueue)
+{
+	double voltAvg = 0.0;
+	double currentAvg = 0.0;
+
+	for (int i = 0; i < REDLINE_VOLTAGE_QUEUE_SIZE; i++)
+	{
+		currentAvg += currentQueue[i];
+		voltAvg += voltageQueue[i];
+	}
+
+	if (voltAvg > REDLINE_VOLTAGE_LIMIT || currentAvg > REDLINE_CURRENT_LIMIT)
+	{
+		return 1;
+	}
+	return 0;
 }
