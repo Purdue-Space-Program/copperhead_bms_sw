@@ -19,7 +19,8 @@ if("${TARGET}" STREQUAL "Native")
   set(CMAKE_CXX_FLAGS_RELEASE "-Os -g0")
 
   set(CMAKE_CXX_FLAGS
-        "${CMAKE_CXX_FLAGS} -fno-rtti -fno-exceptions -fno-threadsafe-statics"
+      "${CMAKE_CXX_FLAGS}
+          -fno-rtti -fno-exceptions -fno-threadsafe-statics -std=c++17"
     )
   set(TOOLCHAIN_LINK_LIBRARIES "${TOOLCHAIN_LINK_LIBRARIES} m pthread rt")
 else()
