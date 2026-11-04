@@ -1,12 +1,16 @@
 #include "task-command.hpp"
 
+static QueueHandle_t listenerQueue;
+
 void sendToCommandListener(command cmd)
 {
-	
+	if (listenerQueue == nullptr) return;
+
 	commandPacket packet = {
 		cmd
 	};
-	//send to queue or something
+
+	xQueueSend(listenerQueue, &packet);
 }
 
 void vTaskCommandRead(QueueHandle_t* commandQueue)
@@ -17,7 +21,7 @@ void vTaskCommandRead(QueueHandle_t* commandQueue)
 
 	for (;;)
 	{
-		//if queue recieves command continue
+		if (xQueueReceive(*commandQueue, &packet, portMAX_DELAY) != pdTRUE) continue;
 
 		switch (packet.cmd)
 		{
