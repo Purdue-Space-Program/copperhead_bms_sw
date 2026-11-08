@@ -1,11 +1,15 @@
-#include "task-fsm.hpp" //this is where states are defined
+// rtos and std headers
 #include "FreeRTOS.h"
-#include "bus-driver.hpp" //functions to control bus connection
-#include "constants.hpp"
 #include "queue.h"
-#include "task-telem.hpp"
 #include "task.h"
 #include <optional>
+
+// our custom headers
+#include "constants.hpp"
+#include "driver-bus.hpp"
+#include "task-command.hpp"
+#include "task-fsm.hpp" //this is where states are defined
+#include "task-telem.hpp"
 
 // the routines we run in each state
 void faultRoutine(void);
@@ -15,7 +19,7 @@ void chargeRoutine(void);
 void dischargeRoutine(void);
 
 // functions to help determine the next state
-std::optional dequeueCommand(QueueHandle_t commandQueue);
+std::optional<commandPacket> dequeueCommand(QueueHandle_t commandQueue);
 bool redlineCheck(QueueHandle_t voltageQueue, QueueHandle_t currentQueue);
 
 // the fsm task
@@ -111,12 +115,12 @@ void dischargeRoutine(void)
 	connectToBus();
 }
 
-std::optional dequeueCommand(QueueHandle_t commandQueue)
+std::optional<commandPacket> dequeueCommand(QueueHandle_t commandQueue)
 {
 	commandPacket newCommand;
 	xQueueReceive(commandQueue, &newCommand, 25);
 
-	if (newCommand == nullptr || badthing == true)
+	if (1)
 	{
 		return std::optional<commandPacket>{newCommand};
 	}

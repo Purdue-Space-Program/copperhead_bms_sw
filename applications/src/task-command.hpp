@@ -1,8 +1,6 @@
-
 #include "FreeRTOS.h"
 #include "queue.h"
-#include "task-fsm.hpp"
-#include <stdint.h>
+#pragma once
 
 // each command is a commanded transition (orange arrows) on the state diagram
 enum command

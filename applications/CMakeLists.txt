@@ -28,4 +28,23 @@ function(add_app name)
 
 endfunction()
 
-add_app(src main.cpp)
+add_app(src
+
+main.cpp
+src/constants.hpp
+
+src/task-fsm.cpp
+src/task-fsm.hpp
+
+src/task-command.cpp
+src/task-command.hpp
+
+src/task-telem.cpp
+src/task-telem.hpp
+
+src/driver-bms.cpp
+
+src/driver-uart.cpp
+
+src/driver-bus.cpp
+)

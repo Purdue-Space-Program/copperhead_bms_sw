@@ -13,6 +13,8 @@ void vTaskFSM(void);
 
 int main(void)
 {
+	// start hal
+
 	// create FSM task TCB, stack buffer, and then spin up the task itself
 	StaticTask_t FSMTaskBuffer;
 	StackType_t FSMStackBuffer[TASK_STACK_SIZE];
