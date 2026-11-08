@@ -8,4 +8,4 @@ struct telemPacket
 	double cellVoltage[18];
 };
 
-void vTaskTelemSender(QueueHandle_t* telemQueue);
+void vTaskTelemSender(QueueHandle_t telemQueue);
